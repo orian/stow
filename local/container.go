@@ -122,7 +122,7 @@ func (c *container) Items(prefix, cursor string, count int) ([]stow.Item, string
 }
 
 func (c *container) Item(id string) (stow.Item, error) {
-	path := id
+	path := path.Join(c.path, id)
 	info, err := os.Stat(path)
 	if os.IsNotExist(err) {
 		return nil, stow.ErrNotFound
